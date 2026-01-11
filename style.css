@@ -1,0 +1,200 @@
+/* ========================= */
+/* 💌 VALENTINES CARD STYLE */
+/* ========================= */
+
+.valentine-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 360px;
+  transform: translate(-50%, -50%);
+  perspective: 1200px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.valentine-card .card-front,
+.valentine-card .card-inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  transition: transform 1s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Front */
+.card-front {
+  background: linear-gradient(135deg, #ff5f8a, #ff9a9e);
+  color: #fff;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card-front h2 {
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+.card-front p {
+  opacity: 0.9;
+  margin-top: 6px;
+}
+
+.heart {
+  font-size: 60px;
+  animation: heartbeat 1.2s infinite;
+}
+
+/* Inside */
+.card-inside {
+  background: #fff;
+  color: #ff3b6b;
+  transform: rotateY(180deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card-inside h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card-inside p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.card-inside .from {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Ribbon */
+.card-ribbon {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  width: 120px;
+  height: 30px;
+  background: #ff2f6d;
+  transform: translateX(-50%);
+  border-radius: 0 0 10px 10px;
+  z-index: 10;
+}
+
+.card-ribbon::before,
+.card-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 30px;
+  background: #d81b60;
+}
+
+.card-ribbon::before {
+  left: -20px;
+  border-radius: 10px 0 0 10px;
+}
+
+.card-ribbon::after {
+  right: -20px;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Open state */
+.valentine-card.open .card-front {
+  transform: rotateY(180deg);
+}
+
+.valentine-card.open .card-inside {
+  transform: rotateY(360deg);
+}
+
+/* Heart beat */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+:root {
+  --flower-color: #ff3b6b; /* Matches your card theme */
+}
+
+.flowers {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  z-index: 1; /* Sits behind the card */
+}
+
+/* The Stem */
+.flower__line {
+  width: 2px;
+  height: 200px;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), #159a1e);
+  border-radius: 4px;
+}
+
+/* The Petal Container */
+.f-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Individual Petals */
+.f-leaf {
+  position: absolute;
+  bottom: 200px;
+  width: 40px;
+  height: 80px;
+  background-color: var(--flower-color);
+  border-radius: 50% 50% 0 0;
+  transform-origin: bottom center;
+  opacity: 0;
+  /* The Bloom Animation */
+  animation: bloom-petal 2s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* Petal Positions */
+.f-leaf--1 { transform: rotate(0deg); }
+.f-leaf--2 { transform: rotate(45deg); animation-delay: 0.7s; }
+.f-leaf--3 { transform: rotate(-45deg); animation-delay: 0.7s; }
+.f-leaf--4 { transform: rotate(90deg); animation-delay: 0.9s; }
+.f-leaf--5 { transform: rotate(-90deg); animation-delay: 0.9s; }
+.f-leaf--6 { transform: rotate(135deg); animation-delay: 1.1s; }
+.f-leaf--7 { transform: rotate(-135deg); animation-delay: 1.1s; }
+
+/* The Center of the Flower */
+.flower__white-circle {
+  position: absolute;
+  bottom: 195px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+/* Bloom Keyframes */
+@keyframes bloom-petal {
+  0% {
+    transform: scale(0) rotate(inherit);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(inherit);
+    opacity: 0.9;
+  }
+}
